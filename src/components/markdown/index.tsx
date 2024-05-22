@@ -12,10 +12,11 @@ const CodeBlock = ({ children, language }: any) => {
     <SyntaxHighlighter
       // {...rest}
       PreTag="div"
-      children={children}
       language={language}
       style={dracula}
-    />
+    >
+    {children}
+    </SyntaxHighlighter>
   );
 };
 
@@ -80,9 +81,8 @@ const markdownToReactNode = (
         return (
           <CodeBlock
             {...attributes}
-            children={getCombinedChildren(children)}
             language={extractLanguage(attributes.class)}
-          />
+          >{getCombinedChildren(children)}</CodeBlock>
         );
       }
       const CustomComponent = customComponents[tag];
