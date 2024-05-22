@@ -2,42 +2,6 @@
 import React from "react";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect";
-
-export function CanvasRevealEffectDemo() {
-  return (
-    <>
-      <div className="py-20 flex flex-col lg:flex-row items-center justify-center bg-white dark:bg-black w-full gap-4 mx-auto px-8">
-        <Card title="Sheetal is Nisha" content={"Test"}>
-          <CanvasRevealEffect
-            animationSpeed={5.1}
-            containerClassName="bg-emerald-900"
-          />
-        </Card>
-        <Card title="Nisha is Munni" content={"Test"}>
-          <CanvasRevealEffect
-            animationSpeed={3}
-            containerClassName="bg-black"
-            colors={[
-              [236, 72, 153],
-              [232, 121, 249],
-            ]}
-            dotSize={2}
-          />
-          {/* Radial gradient for the cute fade */}
-          <div className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-black/50 dark:bg-black/90" />
-        </Card>
-        <Card title="Munni is Aditi" content={"Test"}>
-          <CanvasRevealEffect
-            animationSpeed={3}
-            containerClassName="bg-sky-600"
-            colors={[[125, 211, 252]]}
-          />
-        </Card>
-      </div>
-    </>
-  );
-}
 
 export const Card = ({
   title,
@@ -64,7 +28,7 @@ export const Card = ({
         {hovered && (
           <motion.div
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            animate={{ opacity: 0.5 }}
             className="h-full w-full absolute inset-0"
           >
             {children}
@@ -72,13 +36,13 @@ export const Card = ({
         )}
       </AnimatePresence>
 
-      <div className="relative z-20">
+      <div className="relative z-20 w-full h-full overflow-x-auto">
         <div className="text-center group-hover/canvas-card:-translate-y-4 group-hover/canvas-card:opacity-0 transition duration-200 w-full  mx-auto flex items-center justify-center">
           {title}
         </div>
-        <h2 className="dark:text-white text-xl opacity-0 group-hover/canvas-card:opacity-100 relative z-10 text-black mt-4  font-bold group-hover/canvas-card:text-white group-hover/canvas-card:-translate-y-2 transition duration-200">
+        <div className="dark:text-black text-xl opacity-0 group-hover/canvas-card:opacity-100 relative z-10 text-black font-bold group-hover/canvas-card:text-white group-hover/canvas-card:-translate-y-2 transition duration-200">
           {content}
-        </h2>
+        </div>
       </div>
     </div>
   );

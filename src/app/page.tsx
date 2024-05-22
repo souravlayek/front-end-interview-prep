@@ -9,14 +9,14 @@ const HomePage = () => {
       <div className="absolute inset-0 w-full h-full bg-slate-900 z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
 
       <Boxes />
-      <h1 className={cn("md:text-4xl text-xl text-white relative z-20")}>
+      <h1 className={cn("md:text-4xl text-xl text-white text-center relative z-20")}>
         Ace Your Front-End Development Interviews
       </h1>
       <p className="text-center mt-2 text-neutral-300 relative z-20">
         Your Ultimate Resource for Cracking the Code, Acing Every Question, and
         Landing Your Dream Job in Front-End Development
       </p>
-      <div className="m-2 flex justify-center text-center">
+      <div className="m-2 flex justify-center text-center items-center">
         <Link href="/cards">
         <HoverBorderGradient
           containerClassName="rounded-full"

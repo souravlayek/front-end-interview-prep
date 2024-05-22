@@ -55,7 +55,7 @@ export const CardStack = ({
   };
 
   return (
-    <div className="relative h-60 w-60 md:h-60 md:w-96">
+    <div className="relative h-60 w-60 md:h-60 md:w-96 cardWrapper">
       {visibleCards.map((card, index) => {
         return (
           <motion.div
@@ -74,9 +74,10 @@ export const CardStack = ({
               card.customCard
             ) : (
               <>
-                <div className="font-normal text-neutral-700 dark:text-neutral-200">
+                <div className="font-bold text-neutral-700 dark:text-neutral-200">
                   {card.title}
                 </div>
+                <hr />
                 <div className="font-normal text-neutral-700 dark:text-neutral-200 max-h-full overflow-y-auto text-wrap">
                   {card.content}
                 </div>
