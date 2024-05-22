@@ -17,17 +17,20 @@ export const CardStack = ({
   scaleFactor,
   intervalDurationInMS = 5000,
   autoFlip = true,
+  cardsInView = 3,
 }: {
   items: Card[];
   offset?: number;
   scaleFactor?: number;
   intervalDurationInMS?: number;
   autoFlip?: boolean;
+  cardsInView?:number;
 }) => {
   const CARD_OFFSET = offset || 10;
   const SCALE_FACTOR = scaleFactor || 0.06;
 
   const [cards, setCards] = useState<Card[]>(items);
+  const [visibleCards, setVisibleCards] = useState(items.slice(0, cardsInView));
 
   useEffect(() => {
     if (autoFlip) {
@@ -45,14 +48,15 @@ export const CardStack = ({
       setCards((prevCards: Card[]) => {
         const newArray = [...prevCards]; // create a copy of the array
         newArray.unshift(newArray.pop()!); // move the last element to the front
+        setVisibleCards(newArray.slice(0, cardsInView));
         return newArray;
       });
     }, intervalDurationInMS);
   };
 
   return (
-    <div className="relative  h-60 w-60 md:h-60 md:w-96">
-      {cards.map((card, index) => {
+    <div className="relative h-60 w-60 md:h-60 md:w-96">
+      {visibleCards.map((card, index) => {
         return (
           <motion.div
             key={card.id}
@@ -73,7 +77,7 @@ export const CardStack = ({
                 <div className="font-normal text-neutral-700 dark:text-neutral-200">
                   {card.title}
                 </div>
-                <div className="font-normal text-neutral-700 dark:text-neutral-200">
+                <div className="font-normal text-neutral-700 dark:text-neutral-200 max-h-full overflow-y-auto text-wrap">
                   {card.content}
                 </div>
               </>
